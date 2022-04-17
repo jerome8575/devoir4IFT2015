@@ -1,3 +1,4 @@
+
 class Vertex():
     #vertex is a string
     def __init__(self, vertex):
@@ -5,14 +6,14 @@ class Vertex():
     #return the Vertex object's string
     def getKey(self):
         return self.vertex
-    
+
 class Edge():
     #edge is a string
     def __init__(self, edge):
-        self.edge = edge
+        self.name = str(edge)
     #return the Edge object's string
     def getKey(self):
-        return self.edge
+        return self.name
 
 
 class Graph_adjacency_map():
