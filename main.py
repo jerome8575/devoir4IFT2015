@@ -1,6 +1,22 @@
-import Graph_adjacency_map
-import Graph_adjacency_list
-import Graph_adjacency_matrix
+import Graph_adjacency_map as gmap
+import Graph_adjacency_list as glis
+import Graph_adjacency_matrix as gmat
+
+class Vertex():
+    #vertex is a string
+    def __init__(self, vertex):
+        self.vertex = vertex
+    #return the Vertex object's string
+    def getKey(self):
+        return self.vertex
+class Edge():
+    #edge is a string
+    def __init__(self, edge):
+        self.name = str(edge)
+    #return the Edge object's string
+    def getKey(self):
+        return self.name
+
 
 def DFS(g, u, discovered):
     #This is just for the first node visited
@@ -37,7 +53,7 @@ def DFS(g, u, discovered):
 
 def main():
     #create Graph
-    Graphs = [Graph_adjacency_matrix(10), Graph_adjacency_list(), Graph_adjacency_list()]
+    Graphs = [gmat.Graph_adjacency_matrix(10), glis.Graph_adjacency_list(), gmap.Graph_adjacency_map()]
     for graph in Graphs:
         #add Vertices
         for v in {"BOS","JFK","MIA","DFW","ORD","LAX","SFO"}:
@@ -55,9 +71,9 @@ def main():
         graph.insert_edge(Vertex("DFW"), Vertex("LAX"), 49)
         graph.insert_edge(Vertex("LAX"), Vertex("ORD"), 120)
 
-    print(DFS(Graphs[0], Vertex("BOS"), {}))
-    print(DFS(Graphs[1], Vertex("BOS"), {}))
-    print(DFS(Graphs[2], Vertex("BOS"), {}))
+    DFS(Graphs[0], Vertex("BOS"), {})
+    DFS(Graphs[1], Vertex("BOS"), {})
+    DFS(Graphs[2], Vertex("BOS"), {})
     
 main()
 
