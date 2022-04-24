@@ -110,7 +110,37 @@ class Graph_adjacency_matrix:
             row[indOrigin] = None
 
                 
-
+def DFS(g, u, discovered):
+    #This is just for the first node visited
+    if u.getKey() not in discovered.keys():
+        print("We start at " + u.getKey())
+        discovered[u.getKey()] = Edge(Vertex("u"), Vertex("v"), "ORIGIN")
+    #We discovered all of the airports!
+    if len(discovered.keys()) == len(g.V_Set):
+        print("success!");return discovered
+    #visit the first undiscovered adjacent vertex of u
+    for v in g.V_Set:
+        if ( v.getKey() not in discovered.keys() 
+        and g.get_edge(u, v) != None ):
+            e = g.get_edge(u, v)
+            discovered[v.getKey()] = e
+            print("We go to " + v.getKey())
+            return DFS(g, v, discovered)
+    #Dead end!, we need to backpropagate!
+    #find the the origin vertex to backpropagate
+    prev = None 
+    for h in discovered.keys():
+        h = Vertex(h)
+        if g.get_edge(h, u) == discovered[u.getKey()]:
+            prev = h
+            print("We go back to " + prev.getKey())
+            break
+    #can't find the vertex to backpropagate
+    if prev == None: 
+        print("We failed to discover all the airports")
+        return discovered
+    #backpropagate
+    return DFS(g, prev, discovered)
 
 def main():
     #create Graph
@@ -132,6 +162,8 @@ def main():
     graph.insert_edge(Vertex("LAX"), Vertex("ORD"), 120)
     #print graph
     graph.print_all_vertex()
+
+    searchPath = DFS(graph, Vertex("BOS"), {})
     
 main()
 

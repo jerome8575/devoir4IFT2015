@@ -9,11 +9,17 @@ class Vertex():
 
 class Edge():
     #edge is a string
-    def __init__(self, edge):
+    def __init__(self, u, v, edge):
         self.name = str(edge)
+        self.origin = u
+        self.destination = v
     #return the Edge object's string
     def getKey(self):
         return self.name
+    def getDestination(self):
+        return self.destination
+    def getOrigin(self):
+        return self.origin
 
 
 class Graph_adjacency_map():
@@ -65,7 +71,7 @@ class Graph_adjacency_map():
         self.Map[u.getKey()] = {}
 
     def insert_edge(self, u, v, x):
-        e = Edge(x)
+        e = Edge(Vertex(u), Vertex(v), x)
         MapOfu = self.Map[u.getKey()]
         MapOfu[v.getKey()] = e
         return e
@@ -75,7 +81,7 @@ def DFS(g, u, discovered):
     #This is just for the first node visited
     if u.getKey() not in discovered.keys():
         print("We start at " + u.getKey())
-        discovered[u.getKey()] = Edge("ORIGIN")
+        discovered[u.getKey()] = Edge(Vertex("u"), Vertex("v"), "ORIGIN")
     #We discovered all of the airports!
     if len(discovered.keys()) == len(g.V_Set):
         print("success!");return discovered
