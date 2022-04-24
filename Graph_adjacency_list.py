@@ -1,4 +1,9 @@
 # impémentation graphe adjacency list
+
+
+from Graph_adjacency_matrix import Graph_adjacency_matrix
+
+
 class Vertex():
     #vertex is a string
     def __init__(self, vertex):
@@ -29,7 +34,17 @@ class Graph_adjacency_list:
         self.V_Set = set()
 
     def to_adjacency_matrix(self):
-        pass
+        graphMatrix = Graph_adjacency_matrix(15)
+        
+        # add vertices
+
+        for node in self.graph:
+            graphMatrix.insert_vertex(node.vertex)
+
+        for node in self.graph:
+            for edge in node.edges:
+                graphMatrix.insert_edge(edge)
+
 
     def print_all_vertex(self):
         for node in self.graph:

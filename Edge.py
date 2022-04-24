@@ -1,22 +1,18 @@
 
 # Class pour arrete
 
-class Edge:
+from re import U
 
-    def __init__(self, org, dest, elem):
-        self.origin = org
-        self.destination = dest
-        self.element = elem
 
-    def getEndpoints(self):
-        return (self.origin, self.destination)
-
-    def opposite(self, x):
-        if x == self.origin:
-            return self.destination
-        else:
-            return self.origin 
-
-    def getEdgeName(self):
-        return self.element
+class Edge():
+    #edge is a string
+    def __init__(self, u, v, edge):
+        self.name = edge
+        self.origin = u
+        self.destination = v
+    #return the Edge object's string
+    def getKey(self):
+        return self.name
+    def getDestination(self):
+        return self.destination
         
